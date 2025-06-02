@@ -76,28 +76,220 @@ const Navbar = ({
 
   return (
     <nav className='fixed top-0 w-full bg-gray-900 z-50'>
-      <div className='flex items-center justify-between px-4 py-3 sm:px-6'>
-        <div className='flex items-center space-x-2'>
+      <div className='flex items-center justify-between px-4 py-3 sm:px-6 lg:px-12'>
+        <div className='flex items-center space-x-3'>
           <img
             src='/images/logo.png'
             alt='Logo'
             className='w-12 h-10 sm:w-16 sm:h-14'
           />
-          <span className='text-white text-sm sm:text-base font-semibold'>
+          <span className='text-white text-sm sm:text-base lg:text-lg font-semibold'>
             The Covenant Nation Igando
           </span>
         </div>
         <div className='flex items-center space-x-2'>
+          <ul className='hidden lg:flex items-center space-x-6 text-white uppercase font-normal text-sm'>
+            <li>
+              <Link to='/' className='hover:text-gray-300 transition'>
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to='/sermons' className='hover:text-gray-300 transition'>
+                Sermons
+              </Link>
+            </li>
+            <li>
+              <Link
+                to='/covenant-radio'
+                className='hover:text-gray-300 transition'
+              >
+                Covenant Radio
+              </Link>
+            </li>
+            <li className='relative'>
+              <button
+                onClick={toggleJoinUsDropdown}
+                className='hover:text-gray-300 transition focus:outline-none'
+              >
+                Join Us
+              </button>
+              {isJoinUsOpen && (
+                <div className='absolute left-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg py-2'>
+                  <Link
+                    to='/join-us/ushering'
+                    className='block px-4 py-2 text-white hover:bg-gray-700 text-sm'
+                    onClick={() => setIsJoinUsOpen(false)}
+                  >
+                    Ushering Department
+                  </Link>
+                  <Link
+                    to='/join-us/childrens-church'
+                    className='block px-4 py-2 text-white hover:bg-gray-700 text-sm'
+                    onClick={() => setIsJoinUsOpen(false)}
+                  >
+                    Children's Church
+                  </Link>
+                  <Link
+                    to='/join-us/mens-fellowship'
+                    className='block px-4 py-2 text-white hover:bg-gray-700 text-sm'
+                    onClick={() => setIsJoinUsOpen(false)}
+                  >
+                    Men's Fellowship
+                  </Link>
+                  <div className='relative'>
+                    <button
+                      onClick={toggleW2MediaDropdown}
+                      className='block w-full text-left px-4 py-2 text-white hover:bg-gray-700 text-sm'
+                    >
+                      W2Media
+                    </button>
+                    {isW2MediaOpen && (
+                      <div className='absolute left-full top-0 w-48 bg-gray-800 rounded-lg shadow-lg py-2'>
+                        <Link
+                          to='/join-us/w2media/social-media'
+                          className='block px-4 py-2 text-white hover:bg-gray-700 text-sm'
+                          onClick={() => {
+                            setIsJoinUsOpen(false)
+                            setIsW2MediaOpen(false)
+                          }}
+                        >
+                          Social Media
+                        </Link>
+                        <Link
+                          to='/join-us/w2media/sound'
+                          className='block px-4 py-2 text-white hover:bg-gray-700 text-sm'
+                          onClick={() => {
+                            setIsJoinUsOpen(false)
+                            setIsW2MediaOpen(false)
+                          }}
+                        >
+                          Sound
+                        </Link>
+                        <Link
+                          to='/join-us/w2media/graphics'
+                          className='block px-4 py-2 text-white hover:bg-gray-700 text-sm'
+                          onClick={() => {
+                            setIsJoinUsOpen(false)
+                            setIsW2MediaOpen(false)
+                          }}
+                        >
+                          Graphics Department
+                        </Link>
+                        <Link
+                          to='/join-us/w2media'
+                          className='block px-4 py-2 text-white hover:bg-gray-700 text-sm'
+                          onClick={() => {
+                            setIsJoinUsOpen(false)
+                            setIsW2MediaOpen(false)
+                          }}
+                        >
+                          W2Media
+                        </Link>
+                        <Link
+                          to='/join-us/w2media/focus'
+                          className='block px-4 py-2 text-white hover:bg-gray-700 text-sm'
+                          onClick={() => {
+                            setIsJoinUsOpen(false)
+                            setIsW2MediaOpen(false)
+                          }}
+                        >
+                          Focus
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                  <Link
+                    to='/join-us/levites'
+                    className='block px-4 py-2 text-white hover:bg-gray-700 text-sm'
+                    onClick={() => setIsJoinUsOpen(false)}
+                  >
+                    Levites
+                  </Link>
+                  <Link
+                    to='/join-us/protocol'
+                    className='block px-4 py-2 text-white hover:bg-gray-700 text-sm'
+                    onClick={() => setIsJoinUsOpen(false)}
+                  >
+                    Protocol
+                  </Link>
+                  <Link
+                    to='/join-us/pastoral-care'
+                    className='block px-4 py-2 text-white hover:bg-gray-700 text-sm'
+                    onClick={() => setIsJoinUsOpen(false)}
+                  >
+                    Pastoral Care
+                  </Link>
+                  <Link
+                    to='/join-us/information-desk'
+                    className='block px-4 py-2 text-white hover:bg-gray-700 text-sm'
+                    onClick={() => setIsJoinUsOpen(false)}
+                  >
+                    Information Desk
+                  </Link>
+                </div>
+              )}
+            </li>
+            <li>
+              <Link to='/about-us' className='hover:text-gray-300 transition'>
+                About Us
+              </Link>
+            </li>
+          </ul>
           {!user && (
             <Link
               to='/auth'
-              className='bg-white text-black text-xs px-3 py-1 sm:px-4 sm:py-2 rounded-full font-semibold hover:bg-gray-100 transition'
+              className='hidden lg:block bg-white text-black text-sm px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition'
             >
               NEW HERE?
             </Link>
           )}
+          {user && (
+            <div className='hidden lg:flex items-center space-x-3'>
+              <span className='text-white text-sm font-semibold'>
+                Hi, {firstName}
+              </span>
+              {photoURL ? (
+                <img
+                  src={photoURL}
+                  alt='Profile'
+                  className='w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300 hover:border-gray-400 transition'
+                  onClick={toggleProfileDropdown}
+                />
+              ) : (
+                <FaUserCircle
+                  className='text-white text-2xl cursor-pointer hover:text-gray-300 transition'
+                  onClick={toggleProfileDropdown}
+                />
+              )}
+              {isProfileOpen && (
+                <div className='absolute top-12 right-0 bg-white text-black rounded-lg shadow-lg w-48 py-2'>
+                  <Link
+                    to='/profile'
+                    className='block px-4 py-2 hover:bg-gray-100 text-sm'
+                    onClick={() => setIsProfileOpen(false)}
+                  >
+                    Profile
+                  </Link>
+                  <Link
+                    to='/settings'
+                    className='block px-4 py-2 hover:bg-gray-100 text-sm'
+                    onClick={() => setIsProfileOpen(false)}
+                  >
+                    Settings
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className='block w-full text-left px-4 py-2 hover:bg-gray-100 text-sm'
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
           <button
-            className='md:hidden text-white text-xl sm:text-2xl'
+            className='lg:hidden text-white text-xl sm:text-2xl'
             onClick={toggleMobileMenu}
           >
             {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
@@ -107,9 +299,9 @@ const Navbar = ({
       <div
         className={`${
           isMobileMenuOpen ? 'flex' : 'hidden'
-        } md:flex flex-col md:flex-row md:items-center absolute md:static top-14 left-0 w-full md:w-auto bg-gray-900 md:bg-transparent px-4 py-3 sm:px-6 md:p-0`}
+        } lg:hidden flex-col absolute top-14 left-0 w-full bg-gray-900 px-4 py-3 sm:px-6`}
       >
-        <ul className='flex flex-col md:flex-row w-full md:w-auto space-y-3 md:space-y-0 md:space-x-4 text-white uppercase font-normal text-sm'>
+        <ul className='flex flex-col space-y-3 text-white uppercase font-normal text-sm'>
           <li>
             <Link
               to='/'
@@ -145,7 +337,7 @@ const Navbar = ({
               Join Us
             </button>
             {isJoinUsOpen && (
-              <div className='mt-2 w-full md:w-48 bg-gray-800 rounded-lg shadow-lg py-2 md:absolute md:left-0'>
+              <div className='mt-2 w-full bg-gray-800 rounded-lg shadow-lg py-2'>
                 <Link
                   to='/join-us/ushering'
                   className='block px-3 py-2 text-white hover:bg-gray-700 text-sm'
@@ -184,7 +376,7 @@ const Navbar = ({
                     W2Media
                   </button>
                   {isW2MediaOpen && (
-                    <div className='mt-2 w-full md:w-48 bg-gray-800 rounded-lg shadow-lg py-2 md:absolute md:left-full md:top-0'>
+                    <div className='mt-2 w-full bg-gray-800 rounded-lg shadow-lg py-2'>
                       <Link
                         to='/join-us/w2media/social-media'
                         className='block px-3 py-2 text-white hover:bg-gray-700 text-sm'
@@ -297,7 +489,7 @@ const Navbar = ({
           </li>
         </ul>
         {user && (
-          <div className='relative flex items-center space-x-2 mt-3 md:mt-0 md:ml-4'>
+          <div className='flex items-center space-x-2 mt-3'>
             <span className='text-white text-xs sm:text-sm font-semibold'>
               Hi, {firstName}
             </span>
@@ -315,7 +507,7 @@ const Navbar = ({
               />
             )}
             {isProfileOpen && (
-              <div className='absolute top-8 right-0 bg-white text-black rounded-lg shadow-lg w-40 py-2'>
+              <div className='absolute top-8 right-4 bg-white text-black rounded-lg shadow-lg w-40 py-2'>
                 <Link
                   to='/profile'
                   className='block px-3 py-2 hover:bg-gray-100 text-sm'
@@ -342,14 +534,14 @@ const Navbar = ({
         )}
       </div>
       {playingSermon && location.pathname !== '/sermons' && (
-        <div className='flex items-center justify-center space-x-3 bg-gray-800 bg-opacity-70 px-3 py-2 mx-4 sm:mx-6 rounded-lg mt-2'>
+        <div className='flex items-center justify-center space-x-3 bg-gray-800 bg-opacity-70 px-3 py-2 mx-4 sm:mx-6 lg:mx-12 rounded-lg mt-2'>
           <img
             src={playingSermon.image}
             alt='Now Playing'
             className='w-8 h-8 sm:w-10 sm:h-10 rounded-md'
           />
-          <div className='text-white text-xs'>
-            <p className='font-semibold truncate max-w-[120px] sm:max-w-[150px]'>
+          <div className='text-white text-xs sm:text-sm'>
+            <p className='font-semibold truncate max-w-[120px] sm:max-w-[150px] lg:max-w-[200px]'>
               {playingSermon.title}
             </p>
             <p className='text-gray-300 truncate'>{playingSermon.author}</p>
@@ -359,7 +551,7 @@ const Navbar = ({
               max={audioRef.current?.duration || 100}
               value={audioRef.current?.currentTime || 0}
               onChange={(e) => handleSeek(e.target.value)}
-              className='w-20 sm:w-24 h-1 bg-gray-600 rounded-full accent-green-400 mt-1'
+              className='w-20 sm:w-24 lg:w-32 h-1 bg-gray-600 rounded-full accent-green-400 mt-1'
             />
           </div>
           <button
