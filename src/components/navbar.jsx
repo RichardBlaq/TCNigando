@@ -76,25 +76,40 @@ const Navbar = ({
 
   return (
     <nav className='fixed top-0 w-full bg-gray-900 z-50'>
-      <div className='flex items-center justify-between px-4 py-4 sm:px-6'>
-        <div className='logo'>
+      <div className='flex items-center justify-between px-4 py-3 sm:px-6'>
+        <div className='flex items-center space-x-2'>
           <img
             src='/images/logo.png'
             alt='Logo'
-            className='w-16 h-14 sm:w-20 sm:h-16'
+            className='w-12 h-10 sm:w-16 sm:h-14'
           />
+          <span className='text-white text-sm sm:text-base font-semibold'>
+            The Covenant Nation Igando
+          </span>
         </div>
-        <button
-          className='md:hidden text-white text-2xl'
-          onClick={toggleMobileMenu}
-        >
-          {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
-        </button>
-        <ul
-          className={`${
-            isMobileMenuOpen ? 'flex' : 'hidden'
-          } md:flex flex-col md:flex-row absolute md:static top-16 left-0 w-full md:w-auto bg-gray-900 md:bg-transparent flex-col md:items-center space-y-4 md:space-y-0 md:space-x-4 text-white uppercase font-normal text-sm px-4 py-4 md:p-0`}
-        >
+        <div className='flex items-center space-x-2'>
+          {!user && (
+            <Link
+              to='/auth'
+              className='bg-white text-black text-xs px-3 py-1 sm:px-4 sm:py-2 rounded-full font-semibold hover:bg-gray-100 transition'
+            >
+              NEW HERE?
+            </Link>
+          )}
+          <button
+            className='md:hidden text-white text-xl sm:text-2xl'
+            onClick={toggleMobileMenu}
+          >
+            {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
+      </div>
+      <div
+        className={`${
+          isMobileMenuOpen ? 'flex' : 'hidden'
+        } md:flex flex-col md:flex-row md:items-center absolute md:static top-14 left-0 w-full md:w-auto bg-gray-900 md:bg-transparent px-4 py-3 sm:px-6 md:p-0`}
+      >
+        <ul className='flex flex-col md:flex-row w-full md:w-auto space-y-3 md:space-y-0 md:space-x-4 text-white uppercase font-normal text-sm'>
           <li>
             <Link
               to='/'
@@ -281,37 +296,8 @@ const Navbar = ({
             </Link>
           </li>
         </ul>
-      </div>
-      <div className='flex items-center space-x-4 px-4 py-2'>
-        {playingSermon && location.pathname !== '/sermons' && (
-          <div className='flex items-center space-x-3 bg-gray-800 bg-opacity-70 px-3 py-2 rounded-lg'>
-            <img
-              src={playingSermon.image}
-              alt='Now Playing'
-              className='w-10 h-10 rounded-md'
-            />
-            <div className='text-white text-xs'>
-              <p className='font-semibold'>{playingSermon.title}</p>
-              <p className='text-gray-300'>{playingSermon.author}</p>
-              <input
-                type='range'
-                min='0'
-                max={audioRef.current?.duration || 100}
-                value={audioRef.current?.currentTime || 0}
-                onChange={(e) => handleSeek(e.target.value)}
-                className='w-24 h-1 bg-gray-600 rounded-full accent-green-400 mt-1'
-              />
-            </div>
-            <button
-              className='text-white hover:text-green-400 text-lg'
-              onClick={togglePlayPause}
-            >
-              {isPlaying ? '❚❚' : '▶'}
-            </button>
-          </div>
-        )}
-        {user ? (
-          <div className='relative flex items-center space-x-2'>
+        {user && (
+          <div className='relative flex items-center space-x-2 mt-3 md:mt-0 md:ml-4'>
             <span className='text-white text-xs sm:text-sm font-semibold'>
               Hi, {firstName}
             </span>
@@ -329,7 +315,7 @@ const Navbar = ({
               />
             )}
             {isProfileOpen && (
-              <div className='absolute top-10 right-0 bg-white text-black rounded-lg shadow-lg w-40 py-2'>
+              <div className='absolute top-8 right-0 bg-white text-black rounded-lg shadow-lg w-40 py-2'>
                 <Link
                   to='/profile'
                   className='block px-3 py-2 hover:bg-gray-100 text-sm'
@@ -353,15 +339,37 @@ const Navbar = ({
               </div>
             )}
           </div>
-        ) : (
-          <Link
-            to='/auth'
-            className='bg-white text-black text-xs px-4 py-2 sm:px-6 sm:py-3 rounded-full font-semibold hover:bg-gray-100 transition'
-          >
-            NEW HERE?
-          </Link>
         )}
       </div>
+      {playingSermon && location.pathname !== '/sermons' && (
+        <div className='flex items-center justify-center space-x-3 bg-gray-800 bg-opacity-70 px-3 py-2 mx-4 sm:mx-6 rounded-lg mt-2'>
+          <img
+            src={playingSermon.image}
+            alt='Now Playing'
+            className='w-8 h-8 sm:w-10 sm:h-10 rounded-md'
+          />
+          <div className='text-white text-xs'>
+            <p className='font-semibold truncate max-w-[120px] sm:max-w-[150px]'>
+              {playingSermon.title}
+            </p>
+            <p className='text-gray-300 truncate'>{playingSermon.author}</p>
+            <input
+              type='range'
+              min='0'
+              max={audioRef.current?.duration || 100}
+              value={audioRef.current?.currentTime || 0}
+              onChange={(e) => handleSeek(e.target.value)}
+              className='w-20 sm:w-24 h-1 bg-gray-600 rounded-full accent-green-400 mt-1'
+            />
+          </div>
+          <button
+            className='text-white hover:text-green-400 text-base sm:text-lg'
+            onClick={togglePlayPause}
+          >
+            {isPlaying ? '❚❚' : '▶'}
+          </button>
+        </div>
+      )}
     </nav>
   )
 }
