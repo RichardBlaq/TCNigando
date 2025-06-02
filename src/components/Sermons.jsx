@@ -43,7 +43,7 @@ const Sermons = ({
   useEffect(() => {
     const fetchSermons = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/sermons')
+        const response = await fetch('/api/sermons') // Vercel API
         if (!response.ok) throw new Error('Failed to fetch')
 
         const data = await response.json()
