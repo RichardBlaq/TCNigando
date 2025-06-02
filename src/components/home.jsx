@@ -1,0 +1,71 @@
+import React, { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+
+const images = [
+  '/images/img1.jpg',
+  '/images/img2.jpg',
+  '/images/img3.jpg',
+  '/images/img4.jpg',
+  '/images/img5.jpg',
+  '/images/img6.jpg',
+  '/images/img7.jpg',
+  '/images/img8.jpg',
+]
+
+const Home = () => {
+  const [bgImage, setBgImage] = useState(images[0])
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % images.length)
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [])
+
+  useEffect(() => {
+    setBgImage(images[index])
+  }, [index])
+
+  return (
+    <div className='relative w-screen h-screen overflow-hidden'>
+      {' '}
+      {/* Full viewport, no overflow */}
+      {/* Background Image Slider */}
+      <AnimatePresence>
+        <motion.div
+          key={bgImage}
+          className='absolute inset-0 bg-cover bg-center mt-28' // Absolute, full coverage
+          style={{ backgroundImage: `url(${bgImage})` }}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 1.5 }}
+          transition={{ duration: 0.8, ease: 'easeInOut' }}
+        />
+      </AnimatePresence>
+      {/* Dark Overlay */}
+      <div className='absolute inset-0 bg-black opacity-60'></div>
+      {/* Hero Content */}
+      <div className='absolute inset-0 flex flex-col justify-center items-center text-white text-center px-6 md:px-12 lg:px-24'>
+        <h1 className='text-4xl md:text-5xl lg:text-8xl font-bold'>
+          Our Reach is Expanding
+        </h1>
+        <button className='mt-4 px-6 py-3 border border-white rounded-full text-lg font-medium hover:bg-white hover:text-black transition'>
+          Join Our Team
+        </button>
+
+        <div className='absolute left-4 bottom-12 flex flex-col items-center gap-2'>
+          <button className='outline-1 px-3 py-2 rounded-full rotate-90 uppercase tracking-wider text-sm font-medium mb-20'>
+            Give
+          </button>
+          <button className='outline-1 px-3 py-2 rounded-full rotate-90 uppercase tracking-wider text-sm font-medium mb-20'>
+            Get Involved
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Home
