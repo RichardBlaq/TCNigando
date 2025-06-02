@@ -10,7 +10,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 import Navbar from './components/navbar'
 import Home from './components/home'
 import Sermons from './components/Sermons'
-import Auth from './components/auth' // New auth component
+import Auth from './components/Auth' // New auth component
 import BibleVerseGenerator from './components/BibleVerseGenerator'
 import Footer from './components/Footer'
 import Profile from './components/Profile'; // Create this
