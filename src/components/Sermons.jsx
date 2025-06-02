@@ -175,7 +175,7 @@ const Sermons = ({
           )}
         </div>
 
-        <div className='w-full px-4 py-8 sm:px-6'>
+        <div className='w-full px-4 py-8 sm:px-6 lg:px-12'>
           <SearchSermons
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
@@ -185,8 +185,8 @@ const Sermons = ({
           ) : error ? (
             <p className='text-center text-red-500 mt-4'>Error: {error}</p>
           ) : (
-            <div className='mt-6'>
-              <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3'>
+            <div className='mt-6 max-w-6xl mx-auto'>
+              <div className='grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8'>
                 {currentSermons.map((sermon) => (
                   <div
                     key={sermon.id}
@@ -200,11 +200,11 @@ const Sermons = ({
                       <img
                         src={sermon.image}
                         alt='Album Artwork'
-                        className='w-full h-28 sm:h-36 object-cover rounded-md'
+                        className='w-full h-24 sm:h-28 lg:h-32 object-cover rounded-md'
                       />
                     </div>
-                    <div className='mt-2 text-gray-300 text-sm'>
-                      <h3 className='font-semibold text-blue-400'>
+                    <div className='mt-2 text-gray-300 text-xs sm:text-sm'>
+                      <h3 className='font-semibold text-blue-400 line-clamp-2'>
                         {sermon.title}
                       </h3>
                       <p className='text-xs text-gray-400'>{sermon.author}</p>
@@ -217,7 +217,7 @@ const Sermons = ({
                         <div className='flex justify-center mt-2'>
                           <button
                             onClick={() => togglePlayPause(sermon)}
-                            className='bg-gray-800 text-white hover:text-green-300 text-xl px-3 py-1 rounded-full'
+                            className='bg-gray-800 text-white hover:text-green-300 text-lg sm:text-xl px-3 py-1 rounded-full'
                           >
                             {sermon.id === playingSermon?.id && isPlaying
                               ? '❚❚'
